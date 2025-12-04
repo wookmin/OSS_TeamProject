@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 // CSS 파일 import 경로 수정: 같은 src 폴더 내에 있으므로 상대 경로 사용
 import './ReactionSpeed.css'; 
 
@@ -15,16 +15,16 @@ const ReactionSpeed = ({ onGoHome }) => {
 
     // 게임 등급 계산 로직
     const getRank = (average) => {
-        if (average < 200) return "GOD ⚡️"; // 초인적인 속도
-        if (average < 250) return "Pro Gamer 🎮";
-        if (average < 300) return "Excellent 👍";
-        if (average < 350) return "Good 🙂";
-        if (average < 400) return "Normal 😐";
+        if (average < 200) return "GOD"; // 초인적인 속도
+        if (average < 250) return "Pro Gamer";
+        if (average < 300) return "Excellent";
+        if (average < 350) return "Good";
+        if (average < 400) return "Normal";
         return "Turtle 🐢"; // 400ms 이상
     };
 
     // 화면 클릭 핸들러
-    const handleClick = () => {
+    const handleClick = useCallback(() => {
         // 1. 대기 상태 -> 준비 상태 (게임 시작)
         if (state === 'waiting') {
             setState('ready');
@@ -59,7 +59,7 @@ const ReactionSpeed = ({ onGoHome }) => {
                 setState('finished'); // 5회 완료
             }
         }
-    };
+    }, [state, result]);
 
     // 게임 리셋
     const resetGame = (e) => {
@@ -68,6 +68,18 @@ const ReactionSpeed = ({ onGoHome }) => {
         setState('waiting');
         setMessage('화면을 클릭하면 시작합니다.');
     };
+
+    // 스페이스 키 이벤트 리스너
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                handleClick();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [handleClick]);
 
     // --- 결과 화면 렌더링 ---
     if (state === 'finished') {
