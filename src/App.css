@@ -1,42 +1,112 @@
 .App {
   text-align: center;
-  background-color: #282c34;
+  background: #f4f2f8;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #333;
+}
+
+.App-header {
+  background: #fffafc;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  box-shadow: 0 4px 16px rgba(180, 180, 200, 0.12);
+}
+
+.App-header h1 {
+  color: #a3bffa;
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+}
+
+.App-header p {
+  color: #6dd6ed;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+/* 닉네임 입력 섹션 */
+.nickname-section {
+  background: #f3e8ff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  border: 2px solid #b39ddb;
+}
+
+.nickname-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #e3eafc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.nickname-input:focus {
+  outline: none;
+  border-color: #a3bffa;
+  box-shadow: 0 0 8px rgba(163, 191, 250, 0.3);
+}
+
+.nickname-hint {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #6a1b9a;
+  font-style: italic;
 }
 
 .game-menu {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-top: 30px;
+  gap: 16px;
+  margin: 24px 0;
 }
 
 .game-button {
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  background-color: #61dafb;
-  color: #282c34;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  background: #ffdee7;
+  color: #fd6e6e;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.2s;
+  font-weight: 600;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(200, 180, 180, 0.08);
 }
 
 .game-button:hover {
-  background-color: #4fa8d1;
-  transform: scale(1.05);
+  background: #ffc7d5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(200, 180, 180, 0.12);
 }
 
-.game-button:disabled {
-  background-color: #555;
-  color: #888;
-  cursor: not-allowed;
-  transform: none;
+/* 순위 보기 버튼 */
+.leaderboard-toggle {
+  margin-top: 16px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  background: #d1c4e9;
+  color: #6a1b9a;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(160, 140, 200, 0.10);
 }
+
+.leaderboard-toggle:hover {
+  background: #b39ddb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(160, 140, 200, 0.15);
+}
+
