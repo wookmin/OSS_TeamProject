@@ -9,67 +9,75 @@
     user-select: none;
     cursor: pointer;
     text-align: center;
-    color: white;
+    color: #2d2d2d;
     transition: background-color 0.2s ease;
 }
 
-/* 상태별 배경색 */
+/* 상태별 배경색 (파스텔 톤) */
 .state-waiting {
-    background-color: #2ecc71; /* 초록색 (시작 대기) */
+    background-color: #d6f0e9;
 }
 
 .state-ready {
-    background-color: #3498db; /* 파란색 (클릭 신호!) */
+    background-color: #d6f0e9;
 }
 
 .state-now {
-    background-color: #e74c3c; /* 빨간색 (신호 대기) */
+    background-color: #f5d6d6;
 }
 
 .game-message {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
 }
 
 .sub-message {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 40px;
-    opacity: 0.9;
+    opacity: 0.95;
+    font-weight: 500;
 }
 
 .result-board {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 30px;
-    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 25px;
     margin-top: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.6);
 }
 
 .rank-badge {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 28px;
     border-radius: 25px;
-    background-color: #f1c40f;
-    color: #2c3e50;
+    background: linear-gradient(135deg, #ffb3d9 0%, #ffc299 100%);
+    color: white;
     font-weight: bold;
-    font-size: 1.5rem;
-    margin: 10px 0;
+    font-size: 1.6rem;
+    margin: 15px 0;
+    box-shadow: 0 6px 20px rgba(255, 179, 217, 0.3);
 }
 
 .btn-home {
     margin-top: 30px;
-    padding: 12px 30px;
-    font-size: 1rem;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 2px solid white;
+    padding: 14px 40px;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #ffb3d9 0%, #ff99ce 100%);
+    border: none;
     color: white;
     border-radius: 25px;
     cursor: pointer;
-    transition: all 0.2s;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .btn-home:hover {
-    background-color: white;
-    color: #333;
+    background: linear-gradient(135deg, #ff99ce 0%, #ff7fbf 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(255, 153, 217, 0.4);
 }

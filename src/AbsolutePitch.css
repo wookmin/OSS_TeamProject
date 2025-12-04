@@ -1,7 +1,21 @@
 /* src/AbsolutePitch.css */
+:root {
+    --primary-pink: #f5d6d6;
+    --primary-peach: #ffe9d6;
+    --primary-mint: #d6f0e9;
+    --primary-blue: #d6e9f5;
+    --primary-purple: #e9d6f5;
+    --accent-pink: #ffb3d9;
+    --accent-mint: #b3f0d9;
+    --accent-blue: #b3d9f0;
+    --accent-purple: #d9b3f0;
+    --light-text: #4a4a4a;
+    --dark-text: #2d2d2d;
+}
+
 .pitch-game-container {
-    background-color: #222;
-    color: #eee;
+    background-color: #d6f0e9;
+    color: var(--dark-text);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
@@ -11,13 +25,14 @@
     width: 100%;
     user-select: none;
     box-sizing: border-box;
-}
 
-.pitch-game-container h1 {
+/* 제거된 @keyframes gradientShift */
     margin: 0 0 20px 0;
     font-weight: 300;
     letter-spacing: 2px;
-    color: #fff;
+    color: var(--dark-text);
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
 }
 
 /* --- 점수판 (Dashboard) --- */
@@ -28,11 +43,12 @@
     width: 80%;
     max-width: 600px;
     margin-bottom: 20px;
-    background: #1a1a1a;
-    padding: 15px 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 1px solid #333;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 20px 30px;
+    border-radius: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .stat-box {
@@ -42,39 +58,42 @@
 
 .stat-label {
     font-size: 0.8rem;
-    color: #888;
+    color: var(--light-text);
     display: block;
     margin-bottom: 5px;
     text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 .stat-value {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    color: #fff;
+    color: var(--dark-text);
 }
 
 .stat-value.highlight {
-    color: #3498db;
+    color: #ff9db5;
 }
 
 .stat-value.level {
-    color: #e67e22;
+    color: #ffc299;
 }
 
 .stat-value.life {
-    color: #e74c3c;
-    font-size: 1.5rem;
+    color: #ff9db5;
+    font-size: 1.6rem;
 }
 
 /* --- 상태 메시지 --- */
 .status-bar {
     margin-bottom: 25px;
-    font-size: 1.2rem;
-    height: 30px;
-    font-weight: 400;
+    font-size: 1.3rem;
+    height: 35px;
+    font-weight: 500;
     text-align: center;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.3);
+    color: var(--dark-text);
 }
 
 /* --- 컨트롤 영역 --- */
@@ -88,32 +107,34 @@
 .controls button,
 .home-button,
 .btn-restart {
-    padding: 12px 30px;
+    padding: 14px 40px;
     font-size: 16px;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     font-weight: 600;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    color: white;
 }
 
 .controls button {
-    background: #3498db;
+    background-color: #ffb3d9;
     color: white;
 }
 
 .controls button:hover {
-    background: #2980b9;
-    transform: translateY(-2px);
+    background-color: #ff99ce;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 153, 217, 0.4);
 }
 
 .controls button:active {
-    transform: scale(0.95);
+    transform: scale(0.98);
 }
 
 .controls button:disabled {
-    background: #444;
+    background: #ccc;
     color: #888;
     cursor: not-allowed;
     transform: none;
@@ -121,31 +142,33 @@
 }
 
 .btn-replay {
-    background-color: #f39c12 !important;
+    background-color: #b3d9f0 !important;
 }
 
 .btn-replay:hover {
-    background-color: #d35400 !important;
+    background-color: #99ccf0 !important;
+    box-shadow: 0 8px 25px rgba(153, 204, 240, 0.4) !important;
 }
 
 .home-button {
     margin-top: 30px;
-    background: #555;
-    color: white;
+    background-color: #b3d9f0;
 }
 
 .home-button:hover {
-    background: #666;
+    background-color: #99ccf0;
+    box-shadow: 0 8px 25px rgba(179, 217, 240, 0.4);
 }
 
 /* --- 피아노 디자인 --- */
 .piano-wrapper {
     position: relative;
-    padding: 20px;
-    background: #111;
-    border-radius: 15px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-    border-top: 10px solid #000;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
 .piano-keys {
@@ -163,54 +186,60 @@
     cursor: pointer;
     box-sizing: border-box;
     border-radius: 0 0 5px 5px;
-    transition: background 0.1s;
+    transition: all 0.1s;
 }
 
 .key.white {
     width: 60px;
     height: 100%;
-    background: linear-gradient(to bottom, #fff 0%, #eee 100%);
-    border: 1px solid #ccc;
+    background-color: #ffffff;
+    border: 2px solid #ddd;
     position: relative;
     z-index: 1;
-    box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 -5px 15px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.12);
     color: #999;
+    font-weight: 600;
 }
 
 .key.white:active,
 .key.white.active-visual {
-    background: #ddd;
+    background: #f0f0f0;
     transform: translateY(2px);
 }
 
 .key.black {
     width: 36px;
     height: 160px;
-    background: linear-gradient(to bottom, #333 0%, #000 100%);
+    background-color: #2a2a2a;
     position: absolute;
     top: 0;
     z-index: 10;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    border: 1px solid #222;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 2px solid #0a0a0a;
     color: transparent;
-    margin-left: -16px; /* 중앙 정렬을 위한 조정 */
+    margin-left: -18px;
+    border-radius: 0 0 4px 4px;
 }
 
 .key.black:active,
 .key.black.active-visual {
-    background: #222;
+    background-color: #1a1a1a;
     transform: translateY(2px);
 }
 
 /* 정답/오답/힌트 애니메이션 */
 .key.correct {
-    background: #2ecc71 !important;
-    transition: background 0.2s;
+    background-color: #a0e8d1 !important;
+    box-shadow: 0 0 20px rgba(179, 240, 217, 0.7), inset 0 -3px 8px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.2s;
+    color: #2d6b5c !important;
+    font-weight: bold;
 }
 
 .key.wrong {
-    background: #e74c3c !important;
-    transition: background 0.2s;
+    background-color: #ffb3d9 !important;
+    box-shadow: 0 0 20px rgba(255, 179, 217, 0.7), inset 0 -3px 8px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.2s;
 }
 
 /* --- 결과 모달 (Overlay) --- */
@@ -220,54 +249,60 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(245, 214, 214, 0.6);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 100;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
 }
 
 .modal-content {
-    background: #2c3e50;
-    padding: 50px;
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 60px 50px;
+    border-radius: 30px;
     text-align: center;
-    border: 1px solid #34495e;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 179, 217, 0.4);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     animation: fadeIn 0.4s ease-out;
-    max-width: 400px;
+    max-width: 420px;
     width: 90%;
 }
 
 .modal-title {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: #ecf0f1;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: #d9436e;
     font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .modal-score {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: bold;
-    color: #f1c40f;
-    margin: 20px 0;
+    color: #ff9db5;
+    margin: 30px 0 10px 0;
 }
 
 .modal-rank {
-    font-size: 1.5rem;
-    color: #bdc3c7;
+    font-size: 1.6rem;
+    color: #8b6b8b;
     margin-bottom: 30px;
+    font-weight: 600;
 }
 
 .btn-restart {
-    background: #27ae60;
-    margin-top: 10px;
+    background-color: #ffb3d9;
+    margin-top: 15px;
+    color: white;
+    transition: all 0.3s ease;
 }
 
 .btn-restart:hover {
-    background: #2ecc71;
+    background-color: #ff99ce;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 153, 217, 0.4);
 }
 
 @keyframes fadeIn {

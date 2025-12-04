@@ -48,7 +48,7 @@ const ReactionSpeed = ({ onGoHome }) => {
             endTime.current = new Date();
             const diff = endTime.current - startTime.current; // 반응속도 (ms)
             
-            // 결과 저장 (배열 불변성 유지) [cite: 9~16주차.pdf]
+            // 결과 저장 (배열 불변성 유지) 
             setResult(prevResult => [...prevResult, diff]);
 
             // 5회 미만이면 계속 진행

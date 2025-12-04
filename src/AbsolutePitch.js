@@ -186,8 +186,6 @@ const AbsolutePitch = ({ onGoHome }) => {
         setTotalScore(0);
         setCurrentLevel(1);
         setQIndex(0); // nextRound에서 1로 됨
-        // State update is async, so we manipulate nextRound logic slightly or reset manually
-        // Force reset via logic similar to nextRound but explicit
         setFoundIndices(new Set());
         setKeyStates({});
         setRetriesLeft(1);
@@ -346,7 +344,6 @@ const AbsolutePitch = ({ onGoHome }) => {
                                 style={style}
                                 onMouseDown={() => handleKeyClick(index)}
                             >
-                                {/* 흰 건반에만 계이름 표시 (선택) */}
                                 {note.type === 'white' ? note.note.replace(/\d/, '') : ''}
                             </div>
                         );
