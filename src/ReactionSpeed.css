@@ -1,0 +1,75 @@
+.reaction-game-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+/* 상태별 배경색 */
+.state-waiting {
+    background-color: #2ecc71; /* 초록색 (시작 대기) */
+}
+
+.state-ready {
+    background-color: #3498db; /* 파란색 (클릭 신호!) */
+}
+
+.state-now {
+    background-color: #e74c3c; /* 빨간색 (신호 대기) */
+}
+
+.game-message {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sub-message {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.result-board {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.rank-badge {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: #f1c40f;
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.btn-home {
+    margin-top: 30px;
+    padding: 12px 30px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-home:hover {
+    background-color: white;
+    color: #333;
+}
