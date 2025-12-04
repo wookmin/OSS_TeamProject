@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './AbsolutePitch.css';
 import * as Tone from 'tone';
+import { saveScore } from './api';
 
 // 음계 데이터 (C4 ~ C5)
 const notesData = [
@@ -32,7 +33,7 @@ const LEVEL_CONFIG = {
 const MAX_LEVEL = 6;
 const QUESTIONS_PER_LEVEL = 5;
 
-const AbsolutePitch = ({ onGoHome }) => {
+const AbsolutePitch = ({ onGoHome, nickname }) => {
     // --- State Management ---
     const [gameStatus, setGameStatus] = useState('ready'); // ready, playing, finished, gameover
     const [currentLevel, setCurrentLevel] = useState(1);
@@ -132,6 +133,13 @@ const AbsolutePitch = ({ onGoHome }) => {
         setTargetIndices(candidate);
         usedProblemsRef.current.add(keyStr); // 출제된 문제 기록
     }, []);
+
+    // 게임 종료 시 점수 저장
+    useEffect(() => {
+        if ((gameStatus === 'finished' || gameStatus === 'gameover') && nickname) {
+            saveScore('AbsolutePitch', nickname, totalScore);
+        }
+    }, [gameStatus, nickname, totalScore]);
 
     // 다음 라운드(문제) 진행
     const nextRound = useCallback(() => {

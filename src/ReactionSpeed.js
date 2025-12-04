@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-// CSS 파일 import 경로 수정: 같은 src 폴더 내에 있으므로 상대 경로 사용
-import './ReactionSpeed.css'; 
+import './ReactionSpeed.css';
+import { saveScore } from './api'; 
 
-const ReactionSpeed = ({ onGoHome }) => {
+const ReactionSpeed = ({ onGoHome, nickname }) => {
     // 상태: 'waiting' (시작전/초록), 'ready' (준비/빨강), 'now' (클릭/파랑), 'finished' (결과)
     const [state, setState] = useState('waiting');
     const [message, setMessage] = useState('화면을 클릭하면 시작합니다.');
@@ -81,6 +81,15 @@ const ReactionSpeed = ({ onGoHome }) => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [handleClick]);
 
+    // 게임 종료 시 점수 저장
+    useEffect(() => {
+        if (state === 'finished' && result.length > 0 && nickname) {
+            const average = Math.round(result.reduce((a, c) => a + c) / result.length);
+            // 반응속도를 그대로 사용 (낮을수록 높은 순위)
+            saveScore('ReactionSpeed', nickname, average);
+        }
+    }, [state, result, nickname]);
+
     // --- 결과 화면 렌더링 ---
     if (state === 'finished') {
         const average = Math.round(result.reduce((a, c) => a + c) / result.length);
@@ -109,6 +118,7 @@ const ReactionSpeed = ({ onGoHome }) => {
             className={`reaction-game-container state-${state}`} 
             onMouseDown={handleClick} // 모바일 터치 대응을 위해 onMouseDown 사용 가능 (또는 onClick)
         >
+            {state === 'waiting' && result.length === 0 && <h1>Reaction Speed Test</h1>}
             <div className="game-message">{message}</div>
             {state === 'waiting' && result.length > 0 && 
                 <div className="sub-message">현재 평균: {Math.round(result.reduce((a,c)=>a+c)/result.length)}ms</div>
