@@ -28,7 +28,8 @@ const Leaderboard = ({ onGoHome }) => {
   const gameNames = {
     'AbsolutePitch': '절대음감 테스트',
     'ReactionSpeed': '반응속도 테스트',
-    'MoleCatch': '두더지 잡기 게임'
+    'MoleCatch': '두더지 잡기 게임',
+    'FallingBlocks': '블럭 피하기 게임'
   };
 
   if (loading) {
