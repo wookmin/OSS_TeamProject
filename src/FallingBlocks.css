@@ -1,69 +1,62 @@
-/* 전체 게임 컨테이너 */
-.game-container {
+.canvas-wrapper {
   width: 400px;
-  margin: 40px auto 0 auto;
+  margin: 30px auto;
   text-align: center;
   font-family: "Pretendard", sans-serif;
-  color: #fff;
+  color: white;
 }
 
-/* 게임 보드 */
-.game-board {
-  position: relative;
-  width: 400px;
-  height: 600px;
+.title {
+  margin-bottom: 8px;
+}
+
+.score {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.game-canvas {
   border: 2px solid #444;
   background: #111;
-  overflow: hidden;
-  margin: 0 auto;
 }
 
-/* 플레이어 */
-.player {
+.game-over-ui {
   position: absolute;
-  width: 40px;
-  height: 20px;
-  background: #4caf50;
-  border-radius: 4px;
-}
-
-/* 적 블럭 */
-.block {
-  position: absolute;
-  width: 40px;
-  height: 20px;
-  background: #f44336;
-  border-radius: 3px;
-}
-
-/* 게임 오버 오버레이 */
-.game-over {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  color: #fff;
-
+  top: 150px;
+  width: 400px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-
-  font-size: 20px;
 }
 
-/* 다시 시작 버튼 */
-.restart-btn {
+.game-over-box {
+  background: rgba(0, 0, 0, 0.75);
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+.restart-btn,
+.main-btn {
   padding: 10px 18px;
-  background: #fff;
-  color: #111;
+  margin-top: 10px;
+  width: 150px;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 8px;
   font-size: 16px;
-  margin-top: 12px;
-  transition: 0.2s;
+  cursor: pointer;
 }
 
+.restart-btn {
+  background: #4caf50;
+}
 .restart-btn:hover {
-  transform: scale(1.05);
+  background: #45a049;
+}
+
+.main-btn {
+  background: #03a9f4;
+}
+.main-btn:hover {
+  background: #0296d3;
 }
