@@ -97,10 +97,6 @@ function MoleCatch({ onGoHome, nickname }) {
   };
 
   const handleExitToHome = () => {
-    const confirmExit = window.confirm(
-      '홈으로 나가면 현재 게임이 종료되고 점수가 저장되지 않을 수 있어.\n그래도 나갈래?'
-    );
-    if (!confirmExit) return;
 
     // 상태 초기화
     setIsPlaying(false);
