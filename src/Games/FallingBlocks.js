@@ -219,15 +219,11 @@ function FallingBlocks({ onGoHome, nickname }) {
 
   return (
     <div className="canvas-wrapper">
-      <h2 className="title">🧱 Falling Blocks (Canvas)</h2>
+      <h2 className="title">블럭 피하기</h2>
 
       <div className="status-bar">
         <span>점수: {score}</span>
         {nickname && <span>닉네임: {nickname}</span>}
-        <span>
-          상태:{" "}
-          {isGameOver ? "게임 종료" : isPaused ? "일시 정지" : "플레이 중"}
-        </span>
       </div>
 
       <div style={{ position: "relative", width: W, margin: "0 auto" }}>
