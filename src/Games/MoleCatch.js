@@ -122,16 +122,6 @@ function MoleCatch({ onGoHome, nickname }) {
       <div className="info">
         <div>점수: {score}</div>
         <div>남은 시간: {timeLeft}초</div>
-        <div>
-          상태:{' '}
-          {isGameOver
-            ? '게임 종료'
-            : !isPlaying
-            ? '대기 중'
-            : isPaused
-            ? '일시 정지'
-            : '플레이 중'}
-        </div>
         {nickname && <div>닉네임: {nickname}</div>}
       </div>
 
