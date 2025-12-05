@@ -1,0 +1,67 @@
+.mole-container {
+  width: 360px;
+  margin: 40px auto;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  color: #333;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.info {
+  font-size: 18px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.grid {
+  width: 360px;
+  height: 360px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.hole {
+  width: 100%;
+  height: 100px;
+  background: #654321;
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+}
+
+/* 두더지가 올라올 때 */
+.mole {
+  background: #c57b39;
+}
+
+.mole::after {
+  content: "🐹";
+  font-size: 40px;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 시작 버튼 */
+.start-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #4caf50;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.start-btn:hover {
+  background: #45a049;
+}
