@@ -1,3 +1,4 @@
+/* 카드 전체 */
 .canvas-wrapper {
   width: 420px;
   margin: 30px auto;
@@ -8,6 +9,7 @@
   background: #f8fafc;
   border-radius: 16px;
   border: 2px solid #e2e8f0;
+  box-sizing: border-box;
 }
 
 /* 타이틀 */
@@ -15,28 +17,37 @@
   margin-bottom: 8px;
   font-size: 22px;
   font-weight: 700;
-  color: #475569;
+  color: #374151;
 }
 
-/* 점수 표시 */
-.score {
+/* 상단 상태바 */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
   margin-bottom: 12px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #60a5fa;
+  font-size: 14px;
+  border-radius: 999px;
+  background: #e0f2fe;
+  border: 1px solid #bfdbfe;
+  box-sizing: border-box;
 }
 
-/* Canvas */
+.status-bar span {
+  color: #1f2937;
+}
+
+/* 캔버스 */
 .game-canvas {
   border: 3px solid #cbd5e1;
-  background: #fff;
+  background: #ffffff;
   border-radius: 12px;
 }
 
-/* 게임 오버 UI */
+/* 오버레이(시작/게임오버 공통) */
 .game-over-ui {
   position: absolute;
-  top: 160px;
+  top: 150px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -44,28 +55,29 @@
 
 .game-over-box {
   background: #ffffffee;
-  padding: 20px 28px;
+  padding: 18px 24px 16px;
   border-radius: 12px;
   border: 2px solid #e2e8f0;
   width: 75%;
+  box-sizing: border-box;
 }
 
 .game-over-box h2 {
-  margin-top: 0;
-  font-size: 22px;
-  margin-bottom: 6px;
+  margin: 0 0 6px;
+  font-size: 20px;
   color: #ef4444;
 }
 
 .game-over-box p {
-  font-size: 16px;
-  margin-bottom: 12px;
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #4b5563;
 }
 
 /* 버튼 공통 */
+.start-btn,
 .restart-btn,
-.main-btn,
-.pause-btn {
+.main-btn {
   padding: 10px 0;
   width: 160px;
   border: none;
@@ -73,45 +85,47 @@
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+  margin-top: 8px;
 }
 
-/* 파스텔 버튼 컬러 */
-.restart-btn {
-  background: #a7f3d0; /* mint */
+/* 파스텔 버튼 색상 */
+.start-btn {
+  background: #bbf7d0; /* 민트 */
   color: #065f46;
 }
+.start-btn:hover {
+  background: #86efac;
+}
+
+.restart-btn {
+  background: #fee2e2; /* 연핑크 */
+  color: #b91c1c;
+}
 .restart-btn:hover {
-  background: #6ee7b7;
+  background: #fecaca;
 }
 
 .main-btn {
-  background: #bfdbfe; /* soft blue */
-  color: #1e3a8a;
+  background: #bfdbfe; /* 연파랑 */
+  color: #1d4ed8;
 }
 .main-btn:hover {
   background: #93c5fd;
 }
 
-.pause-btn {
-  background: #fde68a; /* pastel yellow */
-  color: #92400e;
-}
-.pause-btn:hover {
-  background: #fcd34d;
-}
-
-/* 버튼 묶음 */
+/* 하단 버튼 영역 (홈으로) */
 .control-buttons {
-  margin-top: 18px;
+  margin-top: 16px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 반응형 */
 @media (max-width: 440px) {
   .canvas-wrapper {
     width: 92%;
+    padding: 14px 10px;
   }
 
   .game-over-box {
