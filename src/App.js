@@ -6,7 +6,7 @@ import MoleCatch from './MoleCatch';
 import Leaderboard from './Leaderboard';
 
 function App() {
-  // 현재 화면 상태 관리 ('home', 'absolutePitch', 'reactionSpeed', 'moleCatch', 'leaderboard')
+  // 현재 화면 상태 관리 ('home', 'absolutePitch', 'reactionSpeed', 'fallingBlocks', 'moleCatch', 'leaderboard')
   const [currentView, setCurrentView] = useState('home');
   const [nickname, setNickname] = useState('');
 
