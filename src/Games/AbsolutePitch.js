@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './AbsolutePitch.css';
 import * as Tone from 'tone';
-import { saveScore } from './api';
+import { saveScore } from '../api';
 
 // 음계 데이터 (C4 ~ C5)
 const notesData = [

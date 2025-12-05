@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchAllRankings, deleteScore } from './api';
+import { fetchAllRankings, deleteScore } from '../api';
 import './Leaderboard.css';
 
 const Leaderboard = ({ onGoHome }) => {

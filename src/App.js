@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import AbsolutePitch from './AbsolutePitch';
-import ReactionSpeed from './ReactionSpeed';
-import MoleCatch from './MoleCatch';
-import Leaderboard from './Leaderboard';
-import FallingBlocks from './FallingBlocks';
+import AbsolutePitch from './Games/AbsolutePitch';
+import ReactionSpeed from './Games/ReactionSpeed';
+import MoleCatch from './Games/MoleCatch';
+import Leaderboard from './Games/Leaderboard';
+import FallingBlocks from './Games/FallingBlocks';
 
 function App() {
   // 현재 화면 상태 관리 ('home', 'absolutePitch', 'reactionSpeed', 'fallingBlocks', 'moleCatch', 'leaderboard')

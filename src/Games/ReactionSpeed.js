@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './ReactionSpeed.css';
-import { saveScore } from './api'; 
+import { saveScore } from '../api'; 
 
 const ReactionSpeed = ({ onGoHome, nickname }) => {
     // 상태: 'waiting' (시작전/초록), 'ready' (준비/빨강), 'now' (클릭/파랑), 'finished' (결과)
