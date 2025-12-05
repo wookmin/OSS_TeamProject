@@ -4,6 +4,7 @@ import AbsolutePitch from './AbsolutePitch';
 import ReactionSpeed from './ReactionSpeed';
 import MoleCatch from './MoleCatch';
 import Leaderboard from './Leaderboard';
+import FallingBlocks from './FallingBlocks';
 
 function App() {
   // 현재 화면 상태 관리 ('home', 'absolutePitch', 'reactionSpeed', 'fallingBlocks', 'moleCatch', 'leaderboard')
@@ -55,6 +56,12 @@ function App() {
             >
               두더지 잡기 게임
             </button>
+            <button
+              className="game-button"
+              onClick={() => setCurrentView('fallingBlocks')}
+            >
+              블럭 피하기 게임
+            </button>
           </div>
 
           {/* 순위 보기 버튼 */}
@@ -82,6 +89,10 @@ function App() {
   // 두더지 잡기 게임 화면 렌더링
   if (currentView === 'moleCatch') {
     return <MoleCatch onGoHome={() => setCurrentView('home')} nickname={nickname} />;
+  }
+  // 블럭 피하기 게임 화면 렌더링
+  if (currentView === 'fallingBlocks') {
+    return <FallingBlocks onGoHome={() => setCurrentView('home')} />;
   }
 
   // 리더보드 화면 렌더링
