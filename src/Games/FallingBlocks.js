@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./FallingBlocks.css";
+import { saveScore } from "../api";
 
 const W = 400;
 const H = 600;
@@ -11,12 +12,18 @@ const PLAYER_SPEED = 6;
 const BLOCK_W = 40;
 const BLOCK_H = 20;
 
-function FallingBlocks({ onReturnToMain }) {
+// App.js 에서 이렇게 쓸 거야:
+// <FallingBlocks onGoHome={() => setCurrentView('home')} nickname={nickname} />
+
+function FallingBlocks({ onGoHome, nickname }) {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
 
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const isPausedRef = useRef(false);
 
   const keys = useRef({ left: false, right: false });
   const player = useRef({ x: W / 2 - PLAYER_W / 2, y: H - PLAYER_H - 10 });
@@ -56,14 +63,22 @@ function FallingBlocks({ onReturnToMain }) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
 
-    // 재시작할 때를 대비해서 초기화
+    // 새 게임 시작 시 초기화
     blocks.current = [];
+    player.current = { x: W / 2 - PLAYER_W / 2, y: H - PLAYER_H - 10 };
     let last = performance.now();
     let spawnTimer = 0;
 
     const loop = (t) => {
       const dt = t - last;
       last = t;
+
+      // 일시 정지일 때: 상태 업데이트는 안 하지만 시간 기준은 유지
+      if (isPausedRef.current) {
+        animationRef.current = requestAnimationFrame(loop);
+        return;
+      }
+
       spawnTimer += dt;
 
       // 배경 지우기
@@ -131,31 +146,89 @@ function FallingBlocks({ onReturnToMain }) {
     };
   }, [isGameOver]);
 
-  // 🔁 다시 시작: 상태/데이터만 리셋하면 됨 (페이지 전체 새로고침 X)
+  // 게임 오버 시 점수 저장
+  useEffect(() => {
+    if (!isGameOver) return;
+    if (score <= 0) return;
+
+    (async () => {
+      let finalNickname = nickname;
+      if (!finalNickname) {
+        finalNickname = window.prompt(
+          `게임 종료! 점수는 ${score}점이야.\n랭킹에 올릴 닉네임을 입력해줘 :)`
+        );
+      }
+
+      if (!finalNickname) return;
+
+      try {
+        await saveScore("FallingBlocks", finalNickname, score);
+        alert("점수가 랭킹에 저장됐어!");
+      } catch (error) {
+        console.error(error);
+        alert("점수 저장 중 오류가 났어 ㅠㅠ");
+      }
+    })();
+  }, [isGameOver, score, nickname]);
+
+  // 다시 시작
   const handleRestart = () => {
-    player.current = {
-      x: W / 2 - PLAYER_W / 2,
-      y: H - PLAYER_H - 10,
-    };
     blocks.current = [];
     setScore(0);
     setIsGameOver(false); // useEffect에서 루프 다시 시작
+    setIsPaused(false);
+    isPausedRef.current = false;
   };
 
-  // 🔙 메인 페이지: 부모에서 함수를 넘겨줬으면 그걸 사용 / 아니면 루트로 이동
+  // 메인으로
   const handleGoMain = () => {
-    if (onReturnToMain) {
-      onReturnToMain();
-    } else {
-      // 라우터 안 쓰고 있다면 임시로 이렇게:
-      window.location.href = "/";
+    // 게임 종료 상태라면 바로 이동
+    if (isGameOver) {
+      if (onGoHome) onGoHome();
+      return;
     }
+
+    // 게임이 진행 중일 때만 확인창 표시
+    const ok = window.confirm(
+      "홈으로 나가면 현재 게임이 종료되고 점수가 저장되지 않을 수 있어.\n그래도 나갈래?"
+    );
+
+    if (!ok) return;
+
+    // 상태 초기화
+    blocks.current = [];
+    setScore(0);
+    setIsGameOver(false);
+    setIsPaused(false);
+    isPausedRef.current = false;
+
+    if (onGoHome) {
+      onGoHome();
+    }
+  };
+
+
+  // 일시 정지 / 계속하기
+  const handlePauseToggle = () => {
+    setIsPaused((prev) => {
+      const next = !prev;
+      isPausedRef.current = next;
+      return next;
+    });
   };
 
   return (
     <div className="canvas-wrapper">
       <h2 className="title">🧱 Falling Blocks (Canvas)</h2>
-      <p className="score">점수: {score}</p>
+
+      <div className="status-bar">
+        <span>점수: {score}</span>
+        {nickname && <span>닉네임: {nickname}</span>}
+        <span>
+          상태:{" "}
+          {isGameOver ? "게임 종료" : isPaused ? "일시 정지" : "플레이 중"}
+        </span>
+      </div>
 
       <div style={{ position: "relative", width: W, margin: "0 auto" }}>
         <canvas
@@ -181,6 +254,17 @@ function FallingBlocks({ onReturnToMain }) {
             </div>
           </div>
         )}
+      </div>
+
+      <div className="control-buttons">
+        {!isGameOver && (
+          <button className="pause-btn" onClick={handlePauseToggle}>
+            {isPaused ? "계속하기" : "일시 정지"}
+          </button>
+        )}
+        <button className="main-btn" onClick={handleGoMain}>
+          홈으로
+        </button>
       </div>
     </div>
   );

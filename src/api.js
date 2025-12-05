@@ -105,7 +105,7 @@ export const fetchAllRankings = async () => {
     const response = await fetch(API_URL);
     const data = await response.json();
     
-    const games = ['AbsolutePitch', 'ReactionSpeed', 'MoleCatch'];
+    const games = ['AbsolutePitch', 'ReactionSpeed', 'MoleCatch', 'FallingBlocks'];
     const rankings = {};
     
     games.forEach(gameName => {
