@@ -144,23 +144,18 @@ function FallingBlocks({ onGoHome, nickname }) {
     if (!isGameOver) return;
     if (score <= 0) return;
 
+    // ✅ 홈 화면에서 닉네임을 입력한 경우에만 저장
+    if (!nickname) return;
+
     (async () => {
-      let finalNickname = nickname;
-      if (!finalNickname) {
-        finalNickname = window.prompt(
-          `게임 종료! 점수는 ${score}점이야.\n랭킹에 올릴 닉네임을 입력해줘 :)`
-        );
-      }
-
-      if (!finalNickname) return;
-
       try {
-        await saveScore("FallingBlocks", finalNickname, score);
+        await saveScore("FallingBlocks", nickname, score);
       } catch (error) {
         console.error(error);
       }
     })();
   }, [isGameOver, score, nickname]);
+
 
   // 시작하기
   const handleStart = () => {

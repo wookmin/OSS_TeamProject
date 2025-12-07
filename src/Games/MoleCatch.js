@@ -15,7 +15,6 @@ function MoleCatch({ onGoHome, nickname }) {
 
   const GAME_TIME = 20; // 게임 시간(초)
 
-  // 게임 종료 처리
   const handleGameEnd = useCallback(async () => {
     setIsPlaying(false);
     setIsPaused(false);
@@ -23,24 +22,18 @@ function MoleCatch({ onGoHome, nickname }) {
 
     if (score <= 0) return;
 
-    // App에서 닉네임을 받은 경우 그대로 사용, 없으면 그때만 prompt
-    let finalNickname = nickname;
-    if (!finalNickname) {
-      finalNickname = window.prompt(
-        `게임 종료! 점수는 ${score}점이야.\n랭킹에 올릴 닉네임을 입력해줘 :)`
-      );
-    }
-
-    if (!finalNickname) return;
+    // 🔹 홈에서 닉네임을 입력하지 않은 경우: 점수 저장 안 함, 프롬프트도 안 띄움
+    if (!nickname) return;
 
     try {
-      await saveScore('MoleCatch', finalNickname, score);
+      await saveScore('MoleCatch', nickname, score);
       alert('점수가 랭킹에 저장됐어!');
     } catch (error) {
       console.error(error);
       alert('점수 저장 중 오류가 났어 ㅠㅠ');
     }
   }, [score, nickname]);
+
 
   // 타이머
   useEffect(() => {

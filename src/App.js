@@ -92,12 +92,7 @@ function App() {
   }
   // 블럭 피하기 게임 화면 렌더링
   if (currentView === 'fallingBlocks') {
-    return (
-      <FallingBlocks
-        onGoHome={() => setCurrentView('home')}
-        nickname={nickname}
-      />
-    );
+    return <FallingBlocks onGoHome={() => setCurrentView('home')} nickname={nickname} />;
   }
 
 
