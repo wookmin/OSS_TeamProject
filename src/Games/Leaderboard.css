@@ -131,25 +131,69 @@
   flex-shrink: 0;
 }
 
-.no-data {
-  text-align: center;
-  color: #999;
-  padding: 20px;
-  font-style: italic;
+/* 🔹 닉네임 수정용 인풋 */
+.nickname-input {
+  width: 100%;
+  padding: 4px 6px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  box-sizing: border-box;
+  background: #f9fafb;
 }
 
+/* 🔹 액션 버튼 묶음 (수정/저장/취소/삭제) */
+.actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* 수정/저장/취소 버튼 공통 */
+.edit-btn,
+.edit-save-btn,
+.edit-cancel-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* 수정 버튼 */
+.edit-btn {
+  background: #e0f2fe;
+  color: #1d4ed8;
+}
+
+/* 저장 버튼 */
+.edit-save-btn {
+  background: #bbf7d0;
+  color: #065f46;
+}
+
+/* 취소 버튼 */
+.edit-cancel-btn {
+  background: #e5e7eb;
+  color: #4b5563;
+}
+
+/* 기존 삭제 버튼 (actions 안에서 사용) */
 .delete-btn {
   background: #ff6b6b;
   color: white;
   border: none;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  border-radius: 999px;
+  padding: 4px 8px;
+  min-width: 28px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   transition: all 0.2s;
   flex-shrink: 0;
@@ -157,11 +201,18 @@
 
 .delete-btn:hover {
   background: #ff4757;
-  transform: scale(1.1);
+  transform: translateY(-1px);
 }
 
 .delete-btn:active {
-  transform: scale(0.95);
+  transform: translateY(0);
+}
+
+.no-data {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+  font-style: italic;
 }
 
 .home-button {
