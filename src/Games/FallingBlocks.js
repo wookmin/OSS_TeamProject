@@ -59,6 +59,7 @@ function FallingBlocks({ onGoHome, nickname }) {
       return;
     }
 
+    // ** canvas api 사용 **
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
