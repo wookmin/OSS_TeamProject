@@ -138,3 +138,28 @@ export const deleteScore = async (id) => {
     return false;
   }
 };
+
+// 🔹 닉네임 수정
+export const updateNickname = async (record, newNickname) => {
+  try {
+    // PUT을 쓰고 있으니까 기존 필드까지 같이 보내주는 게 안전해
+    const body = {
+      gameName: record.gameName,
+      score: record.score,
+      nickname: newNickname,
+    };
+
+    await fetch(`${API_URL}/${record.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+
+    return true;
+  } catch (error) {
+    console.error('Error updating nickname:', error);
+    return false;
+  }
+};
